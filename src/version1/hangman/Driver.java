@@ -14,6 +14,7 @@ public class Driver {
       dealer.confirm();
       if (dealer.getIsFail()) {
         dealer.lose();
+        sc.close();
         return;
       }
     }
