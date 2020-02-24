@@ -10,10 +10,10 @@ import java.util.List;
 
 import java.nio.file.Path;
 
-public class Answer {
-    private String value;
+public class Question {
+    private String answer;
 
-    Answer() {
+    Question() {
         Path file = Paths.get("cities.txt");
         try {
             List<String> cities = Files.readAllLines(file);
@@ -25,16 +25,16 @@ public class Answer {
         }
     }
 
-    public String getValue() {
-        return this.value;
+    public String getAnswer() {
+        return this.answer;
     }
 
     public void setAnswer(String answer) {
-        this.value = answer;
+        this.answer = answer;
     }
 
     public Guess guess(Guess guess) {
-        if (getValue().contains(guess.getValue())) {
+        if (getAnswer().contains(guess.getValue())) {
             guess.Success();
         } else {
             guess.Fail();

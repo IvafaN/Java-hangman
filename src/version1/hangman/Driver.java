@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Driver {
   public static void main(String[] args) {
-    Answer ans = new Answer();
+    Question ans = new Question();
     Dealer dealer = new Dealer(ans);
     Scanner sc = new Scanner(System.in);
 

@@ -7,15 +7,15 @@ import java.util.Scanner;
 public class Dealer {
   final int DEFAULT_LIFE = 10;
   final String MASK_CHARACTER = "_";
-  private Answer answer;
+  private Question question;
   private List<Guess> guesses = new ArrayList<Guess>();
 
-  public Dealer(Answer answer) {
-    this.answer = answer;
+  public Dealer(Question question) {
+    this.question = question;
   }
 
-  public Answer getAnswer() {
-    return this.answer;
+  public Question getQuestion() {
+    return this.question;
   }
 
   public List<Guess> getGuesses() {
@@ -80,7 +80,7 @@ public class Dealer {
       }
     }
     Guess guess = new Guess(str);
-    getAnswer().guess(guess);
+    getQuestion().guess(guess);
     addGuesses(guess);
     System.out.println("You are guessing: " + displayAnswer());
   }
@@ -97,7 +97,7 @@ public class Dealer {
   }
 
   public String displayAnswer() {
-    String ans = getAnswer().getValue();
+    String ans = getQuestion().getAnswer();
     List<String> letters = getHitLetters();
     String str = "";
     for (int i = 0; i < ans.length(); i++) {
@@ -114,13 +114,13 @@ public class Dealer {
   }
 
   public void win() {
-    String ans = getAnswer().getValue();
+    String ans = getQuestion().getAnswer();
     System.out.println("You win");
     System.out.println("You have guessed \'" + ans + "\' correctly.");
   }
 
   public void lose() {
-    String ans = getAnswer().getValue();
+    String ans = getQuestion().getAnswer();
     System.out.println("You lose!");
     System.out.println("The correct word was \'" + ans + "\'!");
   }
