@@ -68,21 +68,17 @@ public class Dealer {
     this.guesses.add(guess);
   }
 
-  public void ask() {
-    System.out.print("Guess a letter: ");
-    Scanner scan = new Scanner(System.in);
-
-    boolean flg = true;
+  public void ask(Scanner scan) {
     String str = "";
-    while (flg) {
+    while (true) {
+      System.out.print("Guess a letter: ");
       str = scan.next();
-      if (str.length() != 0) {
+      if (str.length() != 1) {
         System.out.println("Oops.. choose one character");
       } else {
         break;
       }
     }
-    scan.close();
     Guess guess = new Guess(str);
     getAnswer().guess(guess);
     addGuesses(guess);
@@ -91,7 +87,7 @@ public class Dealer {
 
   public void confirm() {
     int wrongCount = getWrongCount();
-    List<String> wrongLetters = getWrongLetters();
+    String wrongLetters = String.join(" ", getWrongLetters());
     System.out.println("You have guessed(" + wrongCount + ") wrong letters: " + wrongLetters);
   }
 
@@ -108,8 +104,10 @@ public class Dealer {
       String character = Character.toString(ans.charAt(i));
       if (letters.contains(character)) {
         str += character;
+      } else if (character.equals(" ")) {
+        str += character;
       } else {
-        str += '_';
+        str += MASK_CHARACTER;
       }
     }
     return str;
